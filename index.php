@@ -3,7 +3,7 @@
 include "FileActions_class.php"; include "FileList_class.php"; include "FileUploader_class.php";  // Подключение файлов, содержащие классы
 if (!empty($_POST['download'])) // Проверка на наличие значений в массиве $_POST получаемых методом POST
 {
-    $fileAction = new FileActions(); // Создание объекта fileAction и использование метода downloadFile
+    $fileAction = new FileActions(); // Создание объекта fileAction и использование метода FileDownload
     $fileAction->FileDownload($_POST['download_file']);
 }
 if (!empty($_POST['delete']))
@@ -11,7 +11,7 @@ if (!empty($_POST['delete']))
     $fileAction = new FileActions();
     $fileAction->FileDelete($_POST['delete_file']);
 }
-if (!empty($_FILES['userfile'])) // Создание объекта fileUploader и присвоение переменной uploadresult результата метода fileupload
+if (!empty($_FILES['userfile'])) // Создание объекта fileUploader и присвоение переменной uploadresult результата метода UploadFile
 {
 $fileUploader = new FileUploader();
 $result = $fileUploader->UploadFile(basename($_FILES['userfile']['name']), $_FILES['userfile']['tmp_name']);
@@ -110,7 +110,7 @@ if (count(scandir(FileUploader::FILE_DIR))!= 2)
        </tr>
 
             <?php
-            $draw = new FileList(); // Использование метода listFiles для построения строк таблицы
+            $draw = new FileList(); // Использование метода FilesList для построения строк таблицы
             echo $draw->FilesList();
             ?>
 
